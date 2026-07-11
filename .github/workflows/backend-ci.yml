@@ -1,0 +1,33 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'rb-services/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'rb-services/**'
+
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore rb-services/RoutineBuilder.sln
+
+    - name: Build Backend
+      run: dotnet build rb-services/RoutineBuilder.sln --configuration Release --no-restore
+
+    # Uncomment this when you add a test project down the line
+    # - name: Run Tests
+    #   run: dotnet test rb-services/RoutineBuilder.sln --configuration Release --no-build
