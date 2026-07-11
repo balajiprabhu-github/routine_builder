@@ -1,0 +1,27 @@
+# Build artifacts (C# .NET)
+bin/**/* !*.csproj.user.csprofile
+obj/**/* !**.user.targets !**/*.slnb
+
+# NuGet package restore and local packages
+**/nuget/packages/**/*.dll
+**/nuget/**/*.nupkg
+packages/**/* !*.[0-9]*.props *.config.config.xml *.targets.dll
+*.nuspec.local.*
+[nd]ist/**
+
+# Visual Studio files
+.vs/**/.gitignore
+*.slnb
+**.vsix-cache/
+
+# Rider specific (JetBrains)
+.idea/SavedActionSettings.xml
+.idea/build_log.txt
+.idea/caches/*
+**/*.iml
+.idea/DerivedProfiles/Auto*
+.idea/dictionaries/
+
+# .NET Core tooling generated files (dotnet watch, etc.)
+[System.Runtime.Versioning.OSSpecific]
+[DistributedCacheKeyProvider]*.cache
